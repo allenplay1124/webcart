@@ -1,5 +1,6 @@
 <?php
 
+
 // Valid PHP Version?
 $minPHPVersion = '7.2';
 if (phpversion() < $minPHPVersion)
@@ -32,8 +33,12 @@ chdir(__DIR__);
 require $pathsPath;
 $paths = new Config\Paths();
 
+
 // Location of the framework bootstrap file.
 $app = require rtrim($paths->systemDirectory, '/ ') . '/bootstrap.php';
+
+//載入Database\Eloquent
+require_once __DIR__ . '/../src/bootstrap.php';
 
 /*
  *---------------------------------------------------------------

@@ -50,10 +50,12 @@
 #--------------------------------------------------------------------
 
 # database.default.hostname = localhost
-# database.default.database = ci4
+# database.default.database = webcart
 # database.default.username = root
 # database.default.password = root
-# database.default.DBDriver = MySQLi
+# database.default.DBDriver = mysql
+# database.default.charset = utf8mb4
+# database.default.collation = utf8mb4_general_ci
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
