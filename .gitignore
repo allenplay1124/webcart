@@ -41,6 +41,7 @@ $RECYCLE.BIN/
 #-------------------------
 # These should never be under version control,
 # as it poses a security risk.
+src/.env
 .env
 .vagrant
 Vagrantfile
@@ -48,19 +49,19 @@ Vagrantfile
 #-------------------------
 # Temporary Files
 #-------------------------
-writable/cache/*
-!writable/cache/index.html
+src/writable/cache/*
+!src/writable/cache/index.html
 
-writable/logs/*
-!writable/logs/index.html
+src/writable/logs/*
+!src/writable/logs/index.html
 
-writable/session/*
-!writable/session/index.html
+src/writable/session/*
+!src/writable/session/index.html
 
-writable/uploads/*
-!writable/uploads/index.html
+src/writable/uploads/*
+!src/writable/uploads/index.html
 
-writable/debugbar/*
+src/writable/debugbar/*
 
 php_errors.log
 
@@ -75,7 +76,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 #-------------------------
 # Test Files
 #-------------------------
-tests/coverage*
+src/tests/coverage*
 
 # Don't save phpunit under version control.
 phpunit
@@ -83,7 +84,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+src/vendor/
 composer.lock
 
 #-------------------------
