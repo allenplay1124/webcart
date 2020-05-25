@@ -58,7 +58,7 @@ class AddMember extends Migration
             ]
         ]);
 
-        $attributes = ['ENGINE' => 'InnoDB', 'CHARACTER SET' => 'utf8mb4', 'COLLATE' => 'utf8mb4_general_ci', 'COMMENT' => '會員帳號'];
+        $attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '會員帳號'];
         $this->forge->addPrimaryKey('id');
         $this->forge->addUniqueKey('username');
         $this->forge->createTable('members', true, $attributes);
