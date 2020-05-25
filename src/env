@@ -53,9 +53,10 @@
 # database.default.database = webcart
 # database.default.username = root
 # database.default.password = root
-# database.default.DBDriver = mysql
-# database.default.charset = utf8mb4
-# database.default.collation = utf8mb4_general_ci
+# database.default.DBDriver = MySQLi
+# database.default.ELDdriver = mysql
+# database.default.charset = utf8
+# database.default.collation = utf8_general_ci
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
