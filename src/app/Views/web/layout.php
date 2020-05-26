@@ -1,4 +1,4 @@
-<?= view_cell('\App\Libraries\Header::meta', [
+<?= view_cell('\App\Libraries\Head::meta', [
         'page_title' => $page_title ?? '',
         'keywords' => $keywords ?? '',
         'description' => $description ?? '',

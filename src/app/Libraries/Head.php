@@ -4,7 +4,7 @@ namespace App\Libraries;
 
 use App\Repo\SystemRepo;
 
-class Header
+class Head
 {
     protected $system;
 
@@ -35,6 +35,6 @@ class Header
             'lang' => $this->lang
         ];
         
-        return view('web/meta', $data);
+        return view('web/head', $data);
     }
 }
