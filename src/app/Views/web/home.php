@@ -1,4 +1,4 @@
-<?= $this->extend('web/layout') ?>
+<?= $this->extend('web/Layout') ?>
 
 <?= $this->section('content') ?>
 <?= $this->endsection() ?>

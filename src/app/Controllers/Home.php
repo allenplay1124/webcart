@@ -11,7 +11,7 @@ class Home extends BaseController
     public function index()
     {
         $data =  ['keywords' => '購物, 按摩'];
-        return view('web/home', $data);
+        return view('web/Home', $data);
     }
 
     //--------------------------------------------------------------------
