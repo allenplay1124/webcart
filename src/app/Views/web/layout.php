@@ -4,6 +4,7 @@
         'description' => $description ?? '',
     ]) ?>
 <body>
+    <?= view_cell('App\Libraries\Header::topBar') ?>
     <?= $this->renderSection('content') ?>
 </body>
 </html>
