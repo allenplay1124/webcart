@@ -1,4 +1,9 @@
 .top-bar {
-    background-color: #CCCCCC;
-    height: 100px;
+  background-color: #cccccc;
+  min-height: 50px;
+}
+
+.top-bar-right li {
+  line-height: 50px;
+  padding-left: 10px;
 }
