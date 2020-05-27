@@ -64,6 +64,8 @@
 # database.tests.password = root
 # database.tests.DBDriver = MySQLi
 
+# database.migration.password = password
+
 #--------------------------------------------------------------------
 # CONTENT SECURITY POLICY
 #--------------------------------------------------------------------
