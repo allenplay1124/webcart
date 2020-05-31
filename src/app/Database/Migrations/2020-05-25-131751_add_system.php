@@ -32,16 +32,8 @@ class AddSystem extends Migration
                 'default' => null,
                 'comment' => '設定值說明'
             ],
-            'created_at' => [
-                'type' => 'TIMESTAMP',
-                'null' => false,
-                'comment' => '新增時間'
-            ],
-            'updated_at' => [
-                'type' => 'TIMESTAMP',
-                'null' => false,
-                'comment' => '最後更新時間'
-            ],
+            "created_at TIMESTAMP default CURRENT_TIMESTAMP COMMENT '新增時間'",
+            "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最後更新時間'",
 		]);
 		$attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '系統設定'];
 		$this->forge->addPrimaryKey('id');
