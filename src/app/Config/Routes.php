@@ -5,9 +5,8 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
-	require SYSTEMPATH . 'Config/Routes.php';
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -32,9 +31,18 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->group('member', function($routes) {
-	$routes->get('login', 'Member::login');
-	$routes->get('register', 'Member::register');
+$routes->group('member', function ($routes) {
+    $routes->get('login', 'Member::login');
+    $routes->get('register', 'Member::register');
+});
+
+$routes->group('migration', function ($routes) {
+    $routes->get('index', 'Migration::index');
+    $routes->get('login', 'Migration::login');
+    $routes->post('set_login', 'Migration::setLogin');
+    $routes->post('set_migration', 'Migration::setMigration');
+    $routes->post('set_seeder', 'Migration::setSeeder');
+    $routes->post('set_logout', 'Migration::setLogout');
 });
 
 /**
@@ -50,7 +58,6 @@ $routes->group('member', function($routes) {
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
