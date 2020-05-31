@@ -43,6 +43,9 @@ chdir(FCPATH);
 
 $app = require rtrim($paths->systemDirectory, '/ ') . '/bootstrap.php';
 
+//引入 bootstrap.php
+require_once __DIR__ . '/bootstrap.php';
+
 // Grab our Console
 $console = new \CodeIgniter\CLI\Console($app);
 
