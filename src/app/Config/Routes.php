@@ -19,7 +19,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /**
  * --------------------------------------------------------------------
@@ -29,7 +29,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/{locale} ', 'Home::index');
+
+$routes->group('api', function($routes) {
+    $routes->group('migration', function ($routes) {
+        $routes->post('set_login', 'Api\Migration::setLogin');
+        $routes->post('set_migration', 'Api\Migration::setMigration');
+        $routes->post('set_seeder', 'Api\Migration::setSeeder');
+        $routes->post('set_logout', 'Api\Migration::setLogout');
+    });
+});
 
 $routes->group('member', function ($routes) {
     $routes->get('login', 'Member::login');
@@ -39,10 +48,6 @@ $routes->group('member', function ($routes) {
 $routes->group('migration', function ($routes) {
     $routes->get('index', 'Migration::index');
     $routes->get('login', 'Migration::login');
-    $routes->post('set_login', 'Migration::setLogin');
-    $routes->post('set_migration', 'Migration::setMigration');
-    $routes->post('set_seeder', 'Migration::setSeeder');
-    $routes->post('set_logout', 'Migration::setLogout');
 });
 
 /**

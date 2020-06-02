@@ -37,7 +37,7 @@
         $('#login').submit(function(e){
             e.preventDefault()
             $.post(
-                '<?= site_url('migration/set_login') ?>', 
+                '<?= site_url('api/migration/set_login') ?>', 
                 $(this).serialize(), 
                 function(res) {
                   if (res.status == 'error') {

@@ -41,7 +41,7 @@
       $('#migration').click(function(e){
         e.preventDefault();
         $.ajax({
-          url: '<?= site_url('migration/set_migration') ?>',
+          url: '<?= site_url('api/migration/set_migration') ?>',
           type: 'POST',
           success: function(res) {
             if (res.status == 'error') {
@@ -66,7 +66,7 @@
       $('.btn-seed').click(function(e) {
         e.preventDefault();
         $.ajax({
-          url: '<?= site_url('migration/set_seeder') ?>',
+          url: '<?= site_url('api/migration/set_seeder') ?>',
           type: 'POST',
           data: {
             seed: $(this).val(),
@@ -95,7 +95,7 @@
           e.preventDefault();
           console.log(123)
           $.ajax({
-            url: '<?= site_url('migration/set_logout') ?>',
+            url: '<?= site_url('api/migration/set_logout') ?>',
             type: 'POST',
             success: function(res) {
               if (res.status == 'error') {
