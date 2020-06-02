@@ -29,7 +29,7 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/{locale} ', 'Home::index');
+$routes->get('/', 'Home::index');
 
 $routes->group('api', function($routes) {
     $routes->group('migration', function ($routes) {
@@ -37,6 +37,12 @@ $routes->group('api', function($routes) {
         $routes->post('set_migration', 'Api\Migration::setMigration');
         $routes->post('set_seeder', 'Api\Migration::setSeeder');
         $routes->post('set_logout', 'Api\Migration::setLogout');
+    });
+
+    $routes->group('member', function($routes) {
+        $this->post('login', 'Api\Member::login');
+        $routes->get('register', 'Api\Member::register');
+        $this->post('logout', 'Api\Member::logout');
     });
 });
 
@@ -49,6 +55,8 @@ $routes->group('migration', function ($routes) {
     $routes->get('index', 'Migration::index');
     $routes->get('login', 'Migration::login');
 });
+
+
 
 /**
  * --------------------------------------------------------------------
