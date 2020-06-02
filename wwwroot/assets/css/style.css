@@ -1,9 +1,9 @@
 .top-bar {
   background-color: #cccccc;
-  min-height: 50px;
+  min-height: 30px;
 }
 
-.top-bar-right li {
-  line-height: 50px;
-  padding-left: 10px;
+
+a:hover {
+  text-decoration: none;
 }
