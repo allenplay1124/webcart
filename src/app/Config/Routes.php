@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
@@ -31,7 +33,7 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->group('api', function($routes) {
+$routes->group('api', function ($routes) {
     $routes->group('migration', function ($routes) {
         $routes->post('set_login', 'Api\Migration::setLogin');
         $routes->post('set_migration', 'Api\Migration::setMigration');
@@ -39,10 +41,11 @@ $routes->group('api', function($routes) {
         $routes->post('set_logout', 'Api\Migration::setLogout');
     });
 
-    $routes->group('member', function($routes) {
-        $this->post('login', 'Api\Member::login');
+    $routes->group('member', function ($routes) {
+        $routes->post('login', 'Api\Member::login');
         $routes->get('register', 'Api\Member::register');
-        $this->post('logout', 'Api\Member::logout');
+        $routes->post('logout', 'Api\Member::logout');
+        $routes->patch('set_lang', 'Api\Member::setLang');
     });
 });
 
