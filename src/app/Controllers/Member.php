@@ -5,11 +5,11 @@ class Member extends BaseController
 {
     public function login()
     {
-        return view('web/Login');
+        return view('web/Auth/Login');
     }
 
     public function register()
     {
-        return view('web/Register');
+        return view('web/Auth/Register');
     }
 }
