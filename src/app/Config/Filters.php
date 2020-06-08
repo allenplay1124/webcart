@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 use CodeIgniter\Config\BaseConfig;
 
@@ -16,13 +18,13 @@ class Filters extends BaseConfig
 	// Always applied before every request
 	public $globals = [
 		'before' => [
-			'lang'
-			//'honeypot'
-			// 'csrf',
+			'lang',
+			'honeypot',
+			'csrf',
 		],
 		'after'  => [
 			'toolbar',
-			//'honeypot'
+			'honeypot',
 		],
 	];
 

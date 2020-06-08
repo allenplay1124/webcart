@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
@@ -32,22 +33,26 @@ class Migration extends BaseController
 
         $validate = new MigrationValidator($this->validate);
         $validate = $validate->doLogin($input);
-        
+
         if ($validate->getErrors()) {
             $error['errors'] =  $validate->getErrors();
-            return $this->respond([
-               'status' => 'error',
-               'status_code' => 400,
-               'data' => $error
-           ], 200);
+            return $this->response
+                ->setJson([
+                    'status' => 'error',
+                    'status_code' => 400,
+                    'data' => $error,
+                    csrf_token() => csrf_hash(),
+                ]);
         }
         $this->session->remove('migration_username');
         $this->session->set(['migration_username' => 'sysAdmin']);
-        return $this->respond([
+
+        return $this->response->setJson([
             'status' => 'ok',
             'status_code' => 200,
-            'data' => '登入成功'
-        ], 200);
+            'data' => '登入成功',
+            csrf_token() => csrf_hash(),
+        ]);
     }
 
     /**
@@ -56,10 +61,11 @@ class Migration extends BaseController
     public function setMigration()
     {
         if ($this->session->get('migration_username') !== 'sysAdmin') {
-            return $this->respond([
+            return $this->response->setJson([
                 'status' => 'error',
-                'status' => 403,
-                'data' => '沒有執行權限'
+                'status_code' => 403,
+                'data' => '沒有執行權限',
+                csrf_token() => csrf_hash(),
             ]);
         }
 
@@ -67,17 +73,19 @@ class Migration extends BaseController
         $isSuccess = $migrate->latest();
 
         if ($isSuccess) {
-            return $this->respond([
+            return $this->response->setJson([
                 'status' => 'ok',
-                'status' => 200,
-                'data' => '執行成功'
+                'status_code' => 200,
+                'data' => '執行成功',
+                csrf_token() => csrf_hash(),
             ]);
         }
-        
-        return $this->respond([
+
+        return $this->response->setJson([
             'status' => 'error',
-            'status' => 500,
-            'data' => '執行失敗'
+            'status_code' => 500,
+            'data' => '執行失敗',
+            csrf_token() => csrf_hash(),
         ]);
     }
 
@@ -87,29 +95,32 @@ class Migration extends BaseController
     public function setSeeder()
     {
         if ($this->session->get('migration_username') !== 'sysAdmin') {
-            return $this->respond([
+            return $this->response->setJson([
                 'status' => 'error',
-                'status' => 403,
-                'data' => '沒有執行權限'
+                'status_code' => 403,
+                'data' => '沒有執行權限',
+                csrf_token() => csrf_hash(),
             ]);
         }
 
         $seed = \Config\Database::seeder();
         $value = $this->request->getPost('seed');
         if (empty($value)) {
-            return $this->fail([
+            return $this->response->setJson([
                 'status' => 'error',
                 'status_code' => 403,
-                'data' => '參數錯誤'
+                'data' => '參數錯誤',
+                csrf_token() => csrf_hash(),
             ]);
         }
-        
+
         $seed->call($value);
 
-        return $this->respond([
+        return $this->response->setJson([
             'status' => 'ok',
             'status_code' => 200,
-            'data' => '執行成功'
+            'data' => '執行成功',
+            csrf_token() => csrf_hash(),
         ]);
     }
 
@@ -121,10 +132,11 @@ class Migration extends BaseController
         $this->session->remove('migration_username');
         $this->session->destroy();
 
-        return $this->respond([
+        return $this->response->setJson([
             'status' => 'ok',
-            'status_code' => '200',
-            'data' => '登出成功'
+            'status_code' => 200,
+            'data' => '登出成功',
+            csrf_token() => csrf_hash(),
         ]);
     }
 }

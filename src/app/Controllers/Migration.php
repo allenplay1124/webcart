@@ -17,6 +17,7 @@ class Migration extends BaseController
         $this->lang = \Config\Services::language();
         $this->lang->setLocale('zh-TW');
         helper('filesystem');
+        helper('cookie');
     }
 
     /**
