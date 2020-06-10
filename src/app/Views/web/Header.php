@@ -1,5 +1,5 @@
 <header>
-    <section class="top-bar">
+    <section class="top-bar bg-light">
         <div class="container">
             <div class="row">
                 <div class="col text-left">

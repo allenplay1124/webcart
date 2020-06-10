@@ -27,6 +27,20 @@ class AddMember extends Migration
                 'default' => '',
                 'comment' => '密碼'
             ],
+            'first_name' => [
+                'type' => 'varchar',
+                'constraint' => 255,
+                'null' => true,
+                'default' => null,
+                'comment' => '名字'
+            ],
+            'last_name' => [
+                'type' => 'varchar',
+                'constraint' => 255,
+                'null' => true,
+                'default' => null,
+                'comment' => '姓名'
+            ],
             'email' => [
                 'type' => 'varchar',
                 'constraint' => 255, 255,
@@ -50,7 +64,7 @@ class AddMember extends Migration
                 'type' => 'varchar',
                 'constraint' => 5,
                 'null' => false,
-                'default' => 'CN',
+                'default' => 'zh-CN',
                 'comment' => '語言'
             ],
             'currency' => [

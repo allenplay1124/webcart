@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <?= csrf_meta() ?>
   <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
   <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
@@ -40,18 +40,25 @@
   <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/sweetalert2.min.js') ?>"></script>
   <script type="text/javascript">
+    localStorage.setItem('<?= csrf_token() ?>', '<?= csrf_hash() ?>')
     $('#migration').click(function(e) {
       e.preventDefault();
+
       $.ajax({
         url: '<?= site_url('api/migration/set_migration') ?>',
         type: 'POST',
-        success: function(res) {
+        data: {
+          '<?= csrf_token() ?>': localStorage.getItem('<?= csrf_token() ?>')
+        },
+        success: function(res, status, xhr) {
+          localStorage.setItem('<?= csrf_token() ?>', res.<?= csrf_token() ?>)
           if (res.status == 'error') {
             Swal.fire({
               icon: 'error',
               title: 'error',
               text: res.data
             })
+            
             return false
           }
 
@@ -61,7 +68,7 @@
             text: res.data
           })
           return false
-        }
+        },
       })
     })
 
@@ -72,15 +79,16 @@
         type: 'POST',
         data: {
           seed: $(this).val(),
+          '<?= csrf_token() ?>': localStorage.getItem('<?= csrf_token() ?>')
         },
-        success: function(res) {
+        success: function(res, status, xhr) {
+          localStorage.setItem('<?= csrf_token() ?>', res.<?= csrf_token() ?>)
           if (res.status == 'error') {
             Swal.fire({
               icon: 'error',
               title: 'Error',
               text: res.data
             })
-
             return false
           }
 
@@ -89,17 +97,21 @@
             title: 'Success',
             text: res.data
           })
+          return true
         }
       })
     })
 
     $('#logout').click(function(e) {
       e.preventDefault();
-      console.log(123)
       $.ajax({
         url: '<?= site_url('api/migration/set_logout') ?>',
         type: 'POST',
-        success: function(res) {
+        data: {
+          '<?= csrf_token() ?>': localStorage.getItem('<?= csrf_token() ?>')
+        },
+        success: function(res, status, xhr) {
+          localStorage.setItem('<?= csrf_token() ?>', res.<?= csrf_token() ?>)
           if (res.status == 'error') {
             Swal.fire({
               icon: 'error',
@@ -114,7 +126,6 @@
             title: 'Success',
             text: res.data
           })
-
           document.location.href = '<?= site_url('migration/login') ?>'
         }
       })

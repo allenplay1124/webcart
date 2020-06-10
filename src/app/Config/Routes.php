@@ -22,6 +22,7 @@ $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(false);
+$routes->addPlaceholder('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
 
 /**
  * --------------------------------------------------------------------
@@ -31,6 +32,8 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+
 $routes->get('/', 'Home::index');
 
 $routes->group('api', function ($routes) {
@@ -43,7 +46,7 @@ $routes->group('api', function ($routes) {
 
     $routes->group('member', function ($routes) {
         $routes->post('login', 'Api\Member::login');
-        $routes->get('register', 'Api\Member::register');
+        $routes->post('register', 'Api\Member::register');
         $routes->post('logout', 'Api\Member::logout');
         $routes->patch('set_lang', 'Api\Member::setLang');
     });
@@ -52,6 +55,7 @@ $routes->group('api', function ($routes) {
 $routes->group('member', function ($routes) {
     $routes->get('login', 'Member::login');
     $routes->get('register', 'Member::register');
+    $routes->get('active/(:uuid)', 'Member::active/$1');
 });
 
 $routes->group('migration', function ($routes) {

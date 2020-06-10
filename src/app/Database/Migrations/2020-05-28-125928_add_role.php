@@ -16,7 +16,7 @@ class AddRole extends Migration
             'role_type' => [
                 'type' => 'varchar',
                 'constraint' => 6,
-                'null' => true,
+                'null' => false,
                 'default' => 'member',
                 'comment' => '角色類型:member會員角色, admin 管理者角色'
             ],
@@ -28,15 +28,13 @@ class AddRole extends Migration
                 'comment' => '角色代碼'
             ],
             'role_name' => [
-                'type' => 'varchar',
-                'constraint' => 100,
+                'type' => 'text',
                 'null' => true,
                 'default' => null,
                 'comment' => '角色名稱'
             ],
             'remark' => [
-                'type' => 'varchar',
-                'constraint' => 255,
+                'type' => 'text',
                 'null' => true,
                 'default' => null,
                 'comment' => '角色說明'
@@ -48,7 +46,7 @@ class AddRole extends Migration
         $attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '角色'];
         $this->forge->addPrimaryKey('id');
         $this->forge->addUniqueKey('role_code');
-        $this->forge->addKey(['role_type', 'role_code', 'status']);
+        $this->forge->addKey(['role_type', 'role_code']);
         $this->forge->createTable('roles', true, $attributes);
     }
 

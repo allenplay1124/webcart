@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <?= csrf_meta() ?>
     <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
@@ -17,6 +17,7 @@
                 <div class="card-body">
                     <h5 class="card-title">密碼</h5>
                     <form id="login">
+                        <?= csrf_field () ?>
                         <div class="form-group">
                             <input type="passowrd" name="password" placeholder="請輪入密碼" value=""> 
                             <div class="text-danger"></div>

@@ -2,6 +2,7 @@
 namespace App\Repo;
 
 use App\Models\Member;
+use App\Models\Role;
 
 class MemberRepo
 {
@@ -10,6 +11,22 @@ class MemberRepo
     public function __construct()
     {
         $this->member = new Member;
+    }
+
+    public function register($params)
+    {
+        $role = Role::where('role_code', 'member')->first();
+
+        $this->member->username = trim($params['username']);
+        $this->member->password = trim($params['password']);
+        $this->member->first_name = trim($params['first_name']);
+        $this->member->last_name = trim($params['last_name']);
+        $this->member->email = trim($params['email']);
+        $this->member->role_id = intval($role->id);
+        $this->member->status = 'unactive';
+        $this->member->save();
+
+        return $this->member;
     }
 
     /**

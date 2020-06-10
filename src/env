@@ -97,4 +97,22 @@
 #  honeypot.name = 'honeypot'
 #  honeypot.template = '<label>{label}</label><input type="text" name="{name}" value=""/>'
 
+#--------------------------------------------------------------------
+# Migration
+#--------------------------------------------------------------------
+
 # migration.password = password
+
+#--------------------------------------------------------------------
+# EMAIL
+#--------------------------------------------------------------------
+
+#  email.protocol = 'smtp'
+#  mail.SMTPHost = '' 
+#  email.SMTPUser = ''
+#  email.SMTPPass = ''
+#  email.SMTPPort = 25
+#  email.SMTPCrypto = 'tls'
+#  email.mailType = 'html'
+#  email.fromEmail = ''
+#  email.fromName = ''

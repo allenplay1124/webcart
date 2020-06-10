@@ -1,9 +1,15 @@
 .top-bar {
-  background-color: #cccccc;
-  min-height: 30px;
+  border-bottom: 1px solid #ccc;
 }
-
 
 a:hover {
   text-decoration: none;
+}
+
+.register {
+  margin-top: 70px;
+}
+
+.register h5 {
+  padding-bottom: 10px;
 }

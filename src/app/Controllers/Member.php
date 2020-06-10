@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 class Member extends BaseController
@@ -11,5 +12,9 @@ class Member extends BaseController
     public function register()
     {
         return view('web/Auth/Register');
+    }
+
+    public function active()
+    {
     }
 }
