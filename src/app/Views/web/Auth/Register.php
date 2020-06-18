@@ -1,7 +1,7 @@
 <?= $this->extend('Layout/web') ?>
 
 <?= $this->section('topbar') ?>
-<?= view_cell('\App\Libraries\Header::Topbar') ?>
+    <?= view_cell('\App\Libraries\Header::ReturnBar') ?>
 <?= $this->endsection() ?>
 
 <?= $this->section('content') ?>
@@ -9,7 +9,7 @@
     <div class="card mb-12 register bg-light shadow rounded">
         <div class="row no-gutters">
             <div class="col-md-6 d-none d-md-block register-img">
-                
+
             </div>
             <div class="col-md-6  col-sm-12">
                 <div class="card-body text-center">
@@ -54,41 +54,41 @@
                         </div>
                     </form>
                     <hr />
-                    <div><a href="#">忘記密碼</a></div>
-                    <div><a href="#">登入會員</a></div>
+                    <div><a href="#"><?= lang('Member.forget_password') ?></a></div>
+                    <div><a href="<?= site_url('member/login') ?>"><?= lang('Member.login') ?></a></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-localStorage.setItem('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
-$('#register').submit(function(e) {
-    e.preventDefault();
- 
-    $.ajax({
-        url: '<?= site_url('api/member/register') ?>',
-        type: 'POST',
-        data: $(this).serialize() + '&<?= csrf_token() ?>=' + localStorage.getItem('<?= csrf_token() ?>'),
-        success: function(res, status, xhr) {
-            
-            swal.fire({
-                icon: 'success',
-                title: '<?= lang('Member.register_success') ?>',
-                text: res.msg
-            }).then((res) => {
-                // window.location = '<?= site_url('/') ?>'
-            })
-        },
-        error: function(res, status, xhr) {
-            $('input').next('div').html('')
-            localStorage.setItem('<?= csrf_token() ?>', res.responseJSON.<?= csrf_token() ?>)
-            $.each(res.responseJSON.data.errors, function(index, item){
-                $("input[name='" + index + "']").next('div').html(item)
-            })
-        }
+    localStorage.setItem('<?= csrf_token() ?>', '<?= csrf_hash() ?>');
+    $('#register').submit(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '<?= site_url('api/member/register') ?>',
+            type: 'POST',
+            data: $(this).serialize() + '&<?= csrf_token() ?>=' + localStorage.getItem('<?= csrf_token() ?>'),
+            success: function(res, status, xhr) {
+
+                swal.fire({
+                    icon: 'success',
+                    title: '<?= lang('Member.register_success') ?>',
+                    text: res.msg
+                }).then((res) => {
+                    window.location = '<?= site_url('/') ?>'
+                })
+            },
+            error: function(res, status, xhr) {
+                $('input').next('div').html('')
+                localStorage.setItem('<?= csrf_token() ?>', res.responseJSON.<?= csrf_token() ?>)
+                $.each(res.responseJSON.data.errors, function(index, item) {
+                    $("input[name='" + index + "']").next('div').html(item)
+                })
+            }
+        })
     })
-})
 </script>
 <style>
     body {

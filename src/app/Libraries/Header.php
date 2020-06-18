@@ -37,6 +37,11 @@ class Header
             'currencies' => $currencies
         ];
         
-        return view('web/Header', $data);
+        return view('web/TopBar', $data);
+    }
+
+    public function ReturnBar()
+    {
+        return view('web/ReturnBar');
     }
 }
