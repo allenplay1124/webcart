@@ -8,5 +8,5 @@ return [
     'language' => 'Language',
     'currency' => 'Currency',
     'login' => 'Login',
-    'register' => 'Register'
+    'register' => 'Register',
 ];

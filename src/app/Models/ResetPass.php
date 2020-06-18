@@ -16,4 +16,9 @@ class ResetPass extends Model
         'active_id',
         'active_code',
     ];
+
+    public function member()
+    {
+        return $this->belongsTo('App\Models\Member', 'active_id');
+    }
 }

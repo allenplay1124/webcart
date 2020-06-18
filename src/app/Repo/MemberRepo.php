@@ -48,4 +48,11 @@ class MemberRepo
             ->where('username', $params['username'])
             ->update(['currency' => $params['currency']]);
     }
+
+    public function setActive($member)
+    {
+        $this->member
+            ->where('id', $member->id)
+            ->update(['status' => 'active']);
+    }
 }

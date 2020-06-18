@@ -18,7 +18,9 @@ class ResetPassRepo
 
         $this->member = new Member;
     }
-
+    /**
+     * 新增紀錄
+     */
     public function addResetPass(Member $member)
     {
         $uuid = Uuid::uuid4();
@@ -27,7 +29,20 @@ class ResetPassRepo
         $this->resetPass->active_id = $member->id;
         $this->resetPass->active_code = $uuid;
         $this->resetPass->save();
-        
+
         return site_url("member/active/{$uuid}");
+    }
+
+    public function getActiveMember($active_code)
+    {
+        return $this->resetPass
+            ->where('active_code', $active_code)
+            ->with('member')
+            ->first();
+    }
+
+    public function delResetPass($id)
+    {
+        return $this->resetPass->where('id', $id)->delete();
     }
 }

@@ -27,9 +27,19 @@ class Member extends Model
         'deleted_at',
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     public function role()
     {
         return $this->hasOne('App\Models\Role', 'id', 'role_id');
+    }
+
+    public function resetPass()
+    {
+        return $this->hasOne('App\Models\ResetPass', 'active_id')
+            ->wherePivot('role_type', 'member');
     }
 
     public function setPasswordAttribute(string $password)

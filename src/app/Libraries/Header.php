@@ -27,7 +27,7 @@ class Header
     public function TopBar($params)
     {
         $currency = $this->systemRepo->getSettingValue('currency');
-
+   
         foreach ($currency as $key => $val) {
             $currencies[$key] = $val[$this->lang];
         }

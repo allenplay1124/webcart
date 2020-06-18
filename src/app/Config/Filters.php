@@ -19,12 +19,12 @@ class Filters extends BaseConfig
 	public $globals = [
 		'before' => [
 			'lang',
-			'honeypot',
-			'csrf',
+			// 'honeypot',
+			// 'csrf',
 		],
 		'after'  => [
 			'toolbar',
-			'honeypot',
+			// 'honeypot',
 		],
 	];
 

@@ -7,6 +7,8 @@ use App\Repo\MemberRepo;
 use CodeIgniter\API\ResponseTrait;
 use App\Validation\MemberValidator;
 use App\Repo\ResetPassRepo;
+use App\Repo\SystemRepo;
+use App\Libraries\Email;
 
 class Member extends BaseController
 {
@@ -19,6 +21,8 @@ class Member extends BaseController
     protected $memberRepo;
 
     protected $resetPassRepo;
+
+    protected $systemRepo;
 
     protected $request;
 
@@ -38,11 +42,13 @@ class Member extends BaseController
 
         $this->validate = \Config\Services::validation();
 
-        $this->email = \Config\Services::email();
+        $this->email = new Email;
 
         $this->memberRepo = new MemberRepo;
 
         $this->resetPassRepo = new ResetPassRepo;
+
+        $this->systemRepo = new SystemRepo;
     }
 
     public function register()
@@ -75,26 +81,30 @@ class Member extends BaseController
             ]);
         }
         
-        $active_url = $this->resetPassRepo->addResetPass($member);
+        $activeUrl = $this->resetPassRepo->addResetPass($member);
 
+        $site = $this->systemRepo->getSettingValue('site_name');
+        
+        $lang = session('lang') ?? service('request')->getLocale();
+
+        $siteName = $site[$lang];
 
         $view = view('email/register', [
             'username' => $member->username,
-            'active_url' => $active_url
+            'activeUrl' => $activeUrl,
+            'siteName' => $siteName,
         ]);
-        $this->email->setMailType('html');
-        $this->email->setTo($member->email);
-        $this->email->setSubject('帳號啟用信');
-        $this->email->setMessage($view);
-        $this->email->send();
-
-        var_dump($this->email->printDebugger());
         
+        $this->email->setToAddress($member->email);
+        $this->email->subject(lang('Member.active_mail_title', [$siteName]));
+        $this->email->body($view);
+        $this->email->send();
+     
         return $this->response->setJson([
             'status' => 'success',
             'status_code' => 200,
             'data' => [],
-            'msg' => '認證信可寄出，請前住啟用帳號'
+            'msg' => lang('Member.active_send_msg')
         ]);
     }
 

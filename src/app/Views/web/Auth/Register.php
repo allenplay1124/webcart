@@ -71,7 +71,14 @@ $('#register').submit(function(e) {
         type: 'POST',
         data: $(this).serialize() + '&<?= csrf_token() ?>=' + localStorage.getItem('<?= csrf_token() ?>'),
         success: function(res, status, xhr) {
-            console.log(res)
+            
+            swal.fire({
+                icon: 'success',
+                title: '<?= lang('Member.register_success') ?>',
+                text: res.msg
+            }).then((res) => {
+                // window.location = '<?= site_url('/') ?>'
+            })
         },
         error: function(res, status, xhr) {
             $('input').next('div').html('')
