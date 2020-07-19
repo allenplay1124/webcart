@@ -1,0 +1,26 @@
+{
+  "name": "ci4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/allenplay1124/webcart.git",
+  "author": "allenplay1124 <jailin1124@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.1",
+    "bootstrap": "^4.5.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^3.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^2.0.0",
+    "jquery": "^3.5.1",
+    "minimist": "^1.2.5",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "gulp-sass": "^4.1.0",
+    "gulp-terser": "^1.2.0",
+    "gulp-watch": "^5.0.1",
+    "node-sass": "^4.14.1"
+  }
+}

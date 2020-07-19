@@ -81,3 +81,20 @@ $routes->group('migration', function ($routes) {
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+
+if (file_exists(ROOTPATH . 'mod')) {
+    $modulesPath = ROOTPATH . 'mod/';
+    $modules = scandir($modulesPath);
+
+    foreach ($modules as $module) {
+        if ($module === '.' || $module === '..') continue;
+        if (is_dir($modulesPath) . '/' . $module) {
+            $routesPath = $modulesPath . $module . '/Config/Routes.php';
+            if (file_exists($routesPath)) {
+                require($routesPath);
+            } else {
+                continue;
+            }
+        }
+    }
+}

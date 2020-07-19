@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace App\Validation;
 
 class MemberValidator
@@ -42,5 +43,19 @@ class MemberValidator
         $this->validate->run($data);
 
         return $this->validate;
+    }
+
+    public function login($data)
+    {
+        $this->validate->setRules([
+            'username' => [
+                'label' => lang('Member.username'),
+                'rules' => 'required|string'
+            ],
+            'password' => [
+                'label' => lang('Member.password'),
+                'rules' => 'required|string'
+            ]
+        ]);
     }
 }

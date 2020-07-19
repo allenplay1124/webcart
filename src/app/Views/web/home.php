@@ -1,8 +1,6 @@
 <?= $this->extend('Layout/web') ?>
 
-<?= $this->section('topbar') ?>
-    <?= view_cell('\App\Libraries\Header::Topbar') ?>
-<?= $this->endsection() ?>
+
 
 <?= $this->section('navbar') ?>
     

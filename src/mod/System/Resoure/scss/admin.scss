@@ -1,0 +1,49 @@
+aside {
+  display: block;
+  max-width: 250px;
+  background: #343a40;
+  height: 100%;
+  position: fixed;
+  top: 55px;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  overflow-y: auto;
+  li {
+    cursor: pointer;
+    list-style: none;
+    text-transform: uppercase;
+    left: 0px;
+    margin-left: -30px;
+    margin-right: 10px;
+    padding: 10px;
+    a {
+      color: #ccc;
+    }
+    a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:active {
+      background: rgb(32, 32, 32);
+    }
+    ul {
+      margin-top: 5px;
+    }
+    .drop-link {
+      width: 150px;
+      height: 40px;
+      display: block;
+      padding: 5px;
+    }
+    .drop-link::after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      float: right;
+      content: "\f107";
+    }
+    .drop-block {
+      display: none;
+    }
+  }
+}

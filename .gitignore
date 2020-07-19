@@ -126,3 +126,8 @@ nb-configuration.xml
 /results/
 /phpunit*.xml
 /.phpunit.*.cache
+
+# yarn install frontend packeage
+node_modules
+
+wwwroot/assets/*

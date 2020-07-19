@@ -25,16 +25,22 @@ class Head
 
     public function Meta(array $params)
     {
-        $siteName = $this->system->getSettingValue('site_name');
+        // $siteName = $this->system->getSettingValue('site_name');
 
+        // $data = [
+        //     'site_name' => $siteName[$this->lang],
+        //     'page_title' => $params['page_title'] ?? '',
+        //     'keywords' => $params['keywords'] ?? '',
+        //     'description' => $params['description'] ?? '',
+        //     'lang' => $this->lang
+        // ];
         $data = [
-            'site_name' => $siteName[$this->lang],
-            'page_title' => $params['page_title'] ?? '',
-            'keywords' => $params['keywords'] ?? '',
-            'description' => $params['description'] ?? '',
-            'lang' => $this->lang
+            'site_name' => '網站名稱',
+            'page_title' => '',
+            'keywords' => '',
+            'description' => '',
+            'lang' => ''
         ];
-        
         return view('web/head', $data);
     }
 }

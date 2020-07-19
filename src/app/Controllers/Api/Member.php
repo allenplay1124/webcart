@@ -80,11 +80,11 @@ class Member extends BaseController
                 'msg' => '創建失敗'
             ]);
         }
-        
+
         $activeUrl = $this->resetPassRepo->addResetPass($member);
 
         $site = $this->systemRepo->getSettingValue('site_name');
-        
+
         $lang = session('lang') ?? service('request')->getLocale();
 
         $siteName = $site[$lang];
@@ -94,18 +94,26 @@ class Member extends BaseController
             'activeUrl' => $activeUrl,
             'siteName' => $siteName,
         ]);
-        
+
         $this->email->setToAddress($member->email);
         $this->email->subject(lang('Member.active_mail_title', [$siteName]));
         $this->email->body($view);
         $this->email->send();
-     
+
         return $this->response->setJson([
             'status' => 'success',
             'status_code' => 200,
             'data' => [],
             'msg' => lang('Member.active_send_msg')
         ]);
+    }
+
+    public function login()
+    {
+        $req = $this->request->getPost();
+        
+        $validate = new MemberValidator($this->validate);
+        
     }
 
     public function setLang()
