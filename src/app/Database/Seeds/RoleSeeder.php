@@ -10,7 +10,6 @@ class RoleSeeder extends Seeder
     {
         $data = [
             [
-                'role_type' => 'admin',
                 'role_code' => 'admin',
                 'role_name' => [
                     'en' => 'admin',
@@ -20,7 +19,6 @@ class RoleSeeder extends Seeder
                 'remark' => '管理者'
             ],
             [
-                'role_type' => 'member',
                 'role_code' => 'member',
                 'role_name' => [
                     'en' => 'member',
@@ -29,24 +27,14 @@ class RoleSeeder extends Seeder
                 ],
                 'remark' => '一般會員'
             ],
-            [
-                'role_type' => 'member',
-                'role_code' => 'wholesaler',
-                'role_name' => [
-                    'en' => 'wholesaler',
-                    'zh-CN' => '批發商',
-                    'zh-TW' => '批发商'
-                ],
-                'remark' => '批發商'
-            ]
         ];
 
         foreach($data as $key => $val) {
             if (DB::table('roles')->where('role_code', $val['role_code'])->exists() === false) {
                 DB::table('roles')->insert([
-                    'role_type' => $val['role_type'],
                     'role_code' => $val['role_code'],
                     'role_name' => json_encode($val['role_name']),
+                    'is_open' => true,
                     'remark' => $val['remark']
                 ]);
             }

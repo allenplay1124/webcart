@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Database\Seeds;
 
 use \CodeIgniter\Database\Seeder;
@@ -9,69 +10,56 @@ class SystemSeeder extends Seeder
     public function run()
     {
         $data = [
-            'site_name' => [
-                'value' => [
-                    'zh-CN' => '网站名称',
-                    'zh-TW' => '網站名稱',
-                    'en' => 'Website name'
+            'system' => [
+                [
+                    'setting_key' => 'site_name',
+                    'setting_value' => [
+                        'zh-tw' => '站台名稱',
+                        'zh-cn' => '站台名稱',
+                        'en' => 'Site Name'
+                    ],
+                    'remark' => '站台名稱'
                 ],
-                'remark' => '網站名稱'
-            ],
-            'keywords' => [
-                'value' => [],
-                'remark' => '網站關鍵字'
-            ],
-            'description' => [
-                'value' => [],
-                'remark' => '網站描述'
-            ],
-            'lang' => [
-                'value' => [
-                    'zh-CN' => '简体中文',
-                    'zh-TW' => '繁體中文',
-                    'en' => 'English'
+                [
+                    'setting_key' => 'keyword',
+                    'setting_value' =>  '',
+                    'remark' => '站台關鍵字'
                 ],
-                'remark' => '語言'
-            ],
-            'currency' => [
-                'value' => [
-                    'HKD' => [
-                        'zh-CN' => '港元',
-                        'zh-TW' => '港元',
-                        'en' => 'Hong Kong dollar'
-                    ],
-                    'CNY' => [
-                        'zh-CN' => '人民币',
-                        'zh-TW' => '人民幣',
-                        'en' => 'Renminbi'
-                    ],
-                    'TWD' => [
-                        'zh-CN' => '新台币',
-                        'zh-TW' => '新台幣',
-                        'en' => 'New Taiwan Dollar'
-                    ],
-                    'SGD' => [
-                        'zh-CN' => '新加坡币',
-                        'zh-TW' => '新加坡元',
-                        'en' => 'Singapore Dollar'
-                    ],
-                    'USD' => [
-                        'zh-CN' => '美元',
-                        'zh-TW' => '美元',
-                        'en' => 'US dollar'
-                    ]
+                [
+                    'setting_key' => 'description',
+                    'setting_value' => '',
+                    'remark' => '站台描述'
                 ],
-                'remark' => '幣別'
+                [
+                    'setting_key' => 'lang',
+                    'setting_value' => [
+                        'zh-tw' => '繁體中文',
+                        'zh-cn' => '簡体中文',
+                        'en' => 'English'
+                    ],
+                    'remark' => '語言'
+                ],
             ]
         ];
 
         foreach ($data as $key => $val) {
-            if (DB::table('system')->where('setting_key', $key)->exists() === false) {
-                DB::table('system')->insert([
-                    'setting_key' => $key,
-                    'setting_value' => json_encode($val['value']),
-                    'remark' => $val['remark']
-                ]);
+            foreach ($val as $val2) {
+                if (
+                    DB::table('systems')
+                    ->where('module_code', $key)
+                    ->where('setting_key', $val2['setting_key'])
+                    ->exists() === false
+                ) {
+                    $setting_value = (is_array($val2['setting_value'])) ? json_encode($val2['setting_value']) : $val2['setting_value'];
+                    DB::table('systems')->insert([
+                        'module_code' => $key,
+                        'setting_key' => $val2['setting_key'],
+                        'setting_value' => $setting_value,
+                        'remark' => $val2['remark'],
+                        'created_user' => 'system',
+                        'updated_user' => 'system'
+                    ]);
+                }
             }
         }
     }
