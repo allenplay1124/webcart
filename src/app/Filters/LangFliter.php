@@ -18,7 +18,7 @@ class LangFliter implements FilterInterface
         $this->lang = \Config\Services::language();
     }
 
-    public function before(RequestInterface $request)
+    public function before(RequestInterface $request, $arguments = null)
     {
         $lang = $this->session->get('lang');
         
@@ -30,7 +30,7 @@ class LangFliter implements FilterInterface
         $this->lang->setLocale($lang);
     }
 
-    public function after(RequestInterface $request, ResponseInterface $response)
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
         // Do something here
     }
