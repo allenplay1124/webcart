@@ -29,19 +29,32 @@ class AddMenu extends Migration
 				'default' => 0,
 				'comment' => '上層選單'
 			],
-			'title' => [
+			'icon' => [
 				'type' => 'varchar',
-				'constraint' => 255,
+				'constraint' => 25,
+				'null' => true,
+				'default' => null,
+				'comment' => 'ICON'
+			],
+			'title' => [
+				'type' => 'text',
 				'null' => false,
-				'default' => '',
+				'default' => null,
 				'comment' => '選單名稱'
 			],
 			'route' => [
 				'type' => 'varchar',
 				'constraint' => 255,
-				'null' => false,
-				'default' => '',
+				'null' => true,
+				'default' => null,
 				'comment' => '路由網址'
+			],
+			'href' => [
+				'type' => 'varchar',
+				'constraint' => 255,
+				'null' => true,
+				'default' => null,
+				'comment' => '外部連結'
 			],
 			'target' => [
 				'type' => 'enum',
@@ -82,7 +95,7 @@ class AddMenu extends Migration
 		$attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '選單'];
 		$this->forge->addKey('id', true);
 		$this->forge->addKey(['group', 'parent_id', 'sort']);
-		$this->forge->createTable('menu', true, $attributes);
+		$this->forge->createTable('menus', true, $attributes);
 	}
 
 	//--------------------------------------------------------------------

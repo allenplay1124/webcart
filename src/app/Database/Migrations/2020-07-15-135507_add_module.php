@@ -56,7 +56,7 @@ class AddModule extends Migration
 		$attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '模組'];
 		$this->forge->addKey('id', true);
 		$this->forge->addKey(['module_code']);
-		$this->forge->createTable('module', true, $attributes);
+		$this->forge->createTable('modules', true, $attributes);
 	}
 
 	//--------------------------------------------------------------------

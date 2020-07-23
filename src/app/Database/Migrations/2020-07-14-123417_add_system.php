@@ -9,12 +9,12 @@ class AddSystem extends Migration
 	public function up()
 	{
 		$this->forge->addField([
-			'group' => [
+			'module_code' => [
 				'type' => 'varchar',
 				'constraint' => 255,
 				'null' => false,
 				'default' => '',
-				'comment' => '設定代碼'
+				'comment' => '模組代碼'
 			],
 			'setting_key' => [
 				'type' => 'varchar',
@@ -28,6 +28,13 @@ class AddSystem extends Migration
 				'null' => true,
 				'default' => null,
 				'comment' => '設定值'
+			],
+			'remark' => [
+				'type' => 'varchar',
+				'constraint' => 255,
+				'null' => true,
+				'default' => null,
+				'comment' => '註解'
 			],
 			'created_at datetime default current_timestamp',
 			'updated_at datetime default current_timestamp',
@@ -47,9 +54,9 @@ class AddSystem extends Migration
 			]
 		]);
 		$attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '系統設定'];
-		$this->forge->addKey('group');
+		$this->forge->addKey('module_code');
 		$this->forge->addKey('setting_key');
-		$this->forge->createTable('system', true, $attributes);
+		$this->forge->createTable('systems', true, $attributes);
 	}
 
 	//--------------------------------------------------------------------

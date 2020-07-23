@@ -69,7 +69,7 @@ class AddPermission extends Migration
 		$attributes = ['ENGINE' => 'InnoDB', 'COMMENT' => '權限'];
 		$this->forge->addKey('id', true);
 		$this->forge->addKey(['module_code', 'permisson_code']);
-		$this->forge->createTable('permission', true, $attributes);
+		$this->forge->createTable('permissions', true, $attributes);
 	}
 
 	//--------------------------------------------------------------------
