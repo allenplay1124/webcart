@@ -2,6 +2,8 @@
 
 namespace App\Libraries;
 
+use Mod\System\Models\Menu;
+
 class AdminHead
 {
     protected $lang;
@@ -22,6 +24,13 @@ class AdminHead
 
     public function Navbar()
     {
-        return view('web/admin/navbar');
+        $data['menus'] = Menu::where('group', 'admin')
+                    ->with('child')
+                    ->where('parent_id', 0)
+                    ->orderBy('sort', 'asc')
+                    ->get()
+                    ->toArray();
+   
+        return view('web/admin/navbar', $data);
     }
 }

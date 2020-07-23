@@ -24,26 +24,45 @@
 </nav>
 <aside class="aside">
     <ul class="sidebar">
-        <li class="sidebar-item"><a href="#"><i class="fas fa-tachometer-alt"></i> DashBoard</a></li>
-        <li class="sidebar-item">
-            <a href="#" class="drop-link" >
-                <i class="fab fa-blogger-b"></i>
-                部落格管理
-            </a>
-            <ul class="drop-block" id="blog">
-                <li><a href="#">文章管理</a></li>
-                <li><a href="#">頁面管理</a></li>
-                <li><a href="#">分類管理</a></li>
-            </ul>
-        </li>
-        <li class="sidebar-item">
-            <a href="#" class="drop-link">
-                <i class="fas fa-tools"></i>
-                系統設定
-            </a>
-            <ul class="drop-block" id="system">
-                <li><a href="#">基本設定</a></li>
-            </ul>
-        </li>
+        <?php foreach ($menus as $menu): ?>
+            <li class="sidebar-item">
+                <a 
+                    <?php if ($menu['route'] != '#'): ?>
+                        href="<?= site_url($menu['route']) ?>"
+                    <?php else: ?>
+                        href="#"
+                    <?php endif; ?> 
+                    <?php if (!empty($menu['child'])): ?>
+                        class="drop-link"
+                    <?php endif; ?>
+                    target="<?= $menu['target'] ?>"
+                    id="menu-<?= $menu['id'] ?>"
+                >
+                    <i class="<?= $menu['icon'] ?>"></i>
+                    <?= $menu['title']['zh-tw'] ?>
+                </a>
+                <?php if (!empty($menu['child'])): ?>
+                    <ul class="drop-block">
+                        <?php foreach($menu['child'] as $child): ?>
+                            <li>
+                                <a 
+                                    <?php if ($child['route'] != '#'): ?>
+                                        href="<?= site_url($child['route']) ?>"
+                                    <?php else: ?>
+                                        href="#"
+                                    <?php endif; ?>
+                                    target="<?= $child['target'] ?>"
+                                >
+                                    <i class="<?= $child['icon'] ?>"></i>
+                                    <?= $child['title']['zh-tw'] ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+        
     </ul>
 </aside>
+
