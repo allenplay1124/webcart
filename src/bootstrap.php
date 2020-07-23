@@ -12,7 +12,7 @@ $capsule->addConnection([
     'password'  => getenv('database.default.password'),
     'charset'   => getenv('database.default.charset'),
     'collation' => getenv('database.default.collation'),
-    'prefix'    => '',
+    'prefix'    => getenv('database.default.DBPrefix'),
 ]);
 
 $capsule->setAsGlobal();
