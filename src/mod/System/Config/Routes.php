@@ -5,6 +5,6 @@
 
  $routes->group('admin', function($routes) {
     $routes->group('system', function($routes) {
-        $routes->get('show', '\Mod\System\Controllers\SystemSetting::show');
+        $routes->get('base-setting', '\Mod\System\Controllers\SystemSetting::baseSetting');
     });
  });

@@ -5,8 +5,8 @@ use App\Controllers\BaseController;
 
 class SystemSetting extends BaseController
 {
-    public function show()
+    public function baseSetting()
     {
-        return view('\Mod\System\Views\system_show');
+        return view('\Mod\System\Views\baseSettingShow');
     }
 }
