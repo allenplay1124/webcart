@@ -4,6 +4,8 @@ $(document).ready(function(e) {
     if (menuId != null) {
         $('#' + menuId).next('.drop-block').show()
     }
+
+    $('#admin-content').toggleClass('fit-content')
     
     $('aside .drop-link').click(function(e) {
         e.preventDefault()
@@ -20,6 +22,7 @@ $(document).ready(function(e) {
 
     $('.toggle-bar').click(function(e) {
         e.preventDefault()
+        $('#admin-content').toggleClass('fit-content')
         $('.aside').animate({width:'toggle'}, 100);
     })
 })

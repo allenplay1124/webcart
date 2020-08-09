@@ -35,6 +35,9 @@ function baseJs(cb) {
     "node_modules/popper.js/dist/umd/popper.js",
     "node_modules/@fortawesome/fontawesome-free/js/all.js",
     "node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "node_modules/vue/dist/vue.min.js",
+    "node_modules/vuelidate/dist/vuelidate.min.js",
+    'node_modules/sweetalert2/dist/sweetalert2.min.js'
   ])
     .pipe(concat("base.min.js"))
     .pipe(terser())
@@ -45,7 +48,8 @@ function baseJs(cb) {
 function baseCSS(cb) {
   return src([
     "node_modules/bootstrap/dist/css/bootstrap.css",
-    "node_modules/@fortawesome/fontawesome-free/css/all.css"
+    "node_modules/@fortawesome/fontawesome-free/css/all.css",
+    'node_modules/sweetalert2/dist/sweetalert2.min.css'
   ])
     .pipe(minifyCSS())
     .pipe(concat("base.min.css"))

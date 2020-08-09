@@ -16,8 +16,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 0,
                 'icon' => 'fas fa-tachometer-alt',
                 'title' => [
-                    'zh-tw' => '儀表板',
-                    'zh-cn' => '仪表板',
+                    'zh-TW' => '儀表板',
+                    'zh-CN' => '仪表板',
                     'en' => 'Dashboard'
                 ],
                 'route' => 'admin/dashboard',
@@ -34,8 +34,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 0,
                 'icon' =>  'fas fa-cog',
                 'title' => [
-                    'zh-tw' => '系統設定',
-                    'zh-cn' => '系统设定',
+                    'zh-TW' => '系統設定',
+                    'zh-CN' => '系统设定',
                     'en' => 'System setting'
                 ],
                 'route' => '#',
@@ -52,8 +52,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 2,
                 'icon' => 'fas fa-cogs',
                 'title' => [
-                    'zh-tw' => '基本設定',
-                    'zh-cn' => '基本设定',
+                    'zh-TW' => '基本設定',
+                    'zh-CN' => '基本设定',
                     'en' => 'Basic settings'
                 ],
                 'route' => 'admin/system/base-setting',
@@ -70,8 +70,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 2,
                 'icon' => 'fas fa-globe',
                 'title' => [
-                    'zh-tw' => '語言設定',
-                    'zh-cn' => '语言设定',
+                    'zh-TW' => '語言設定',
+                    'zh-CN' => '语言设定',
                     'en' => 'Language setting'
                 ],
                 'route' => 'admin/system/language',
@@ -88,8 +88,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 2,
                 'icon' => 'fab fa-elementor',
                 'title' => [
-                    'zh-tw' => '選單設定',
-                    'zh-cn' => '选单设定',
+                    'zh-TW' => '選單設定',
+                    'zh-CN' => '选单设定',
                     'en' => 'Menu settings'
                 ],
                 'route' => 'admin/system/menu',
@@ -106,8 +106,8 @@ class MenuSeeder extends Seeder
                 'parent_id' => 2,
                 'icon' => 'fas fa-cubes',
                 'title' => [
-                    'zh-tw' => '模組管理',
-                    'zh-cn' => '模組管理',
+                    'zh-TW' => '模組管理',
+                    'zh-CN' => '模組管理',
                     'en' => 'Module management'
                 ],
                 'route' => 'admin/system/module',

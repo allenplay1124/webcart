@@ -14,8 +14,8 @@ class SystemSeeder extends Seeder
                 [
                     'setting_key' => 'site_name',
                     'setting_value' => [
-                        'zh-tw' => '站台名稱',
-                        'zh-cn' => '站台名稱',
+                        'zh-TW' => '站台名稱',
+                        'zh-CN' => '站台名稱',
                         'en' => 'Site Name'
                     ],
                     'remark' => '站台名稱'
@@ -33,9 +33,9 @@ class SystemSeeder extends Seeder
                 [
                     'setting_key' => 'lang',
                     'setting_value' => [
-                        'zh-tw' => '繁體中文',
-                        'zh-cn' => '簡体中文',
-                        'en' => 'English'
+                        ['lang_code' => 'en', 'lang_name' => 'English'],
+                        ['lang_code' => 'zh-TW', 'lang_name' => '繁體中文'],
+                        ['lang_code' => 'zh-CN', 'lang_name' => '简体中文'],
                     ],
                     'remark' => '語言'
                 ],

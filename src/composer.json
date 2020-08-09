@@ -31,11 +31,5 @@
 		"forum": "http://forum.codeigniter.com/",
 		"source": "https://github.com/codeigniter4/CodeIgniter4",
 		"slack": "https://codeigniterchat.slack.com"
-	},
-	"autoload": {
-		"psr-4" : {
-			"App\\" : "app/",
-			"Mod\\" : "mod/"
-		}
 	}
 }

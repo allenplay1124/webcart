@@ -39,7 +39,7 @@
                     id="menu-<?= $menu['id'] ?>"
                 >
                     <i class="<?= $menu['icon'] ?>"></i>
-                    <?= $menu['title']['zh-tw'] ?>
+                    <?= $menu['title']['zh-TW'] ?>
                 </a>
                 <?php if (!empty($menu['child'])): ?>
                     <ul class="drop-block">
@@ -54,7 +54,7 @@
                                     target="<?= $child['target'] ?>"
                                 >
                                     <i class="<?= $child['icon'] ?>"></i>
-                                    <?= $child['title']['zh-tw'] ?>
+                                    <?= $child['title']['zh-TW'] ?>
                                 </a>
                             </li>
                         <?php endforeach; ?>

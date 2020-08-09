@@ -3,7 +3,7 @@ aside {
   max-width: 250px;
   background: #343a40;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 55px;
   bottom: 0;
   left: 0;
@@ -46,4 +46,23 @@ aside {
       display: none;
     }
   }
+}
+
+#admin-content {
+  padding: 10pt;
+}
+
+.fit-content {
+  margin-left: 200px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+legend {
+  width: 10%;
+  padding: 10px;
 }

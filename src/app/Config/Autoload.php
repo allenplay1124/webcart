@@ -15,6 +15,8 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 
 	public $classmap = [];
 
+
+
 	//--------------------------------------------------------------------
 
 	/**
@@ -27,7 +29,6 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 	public function __construct()
 	{
 		parent::__construct();
-
 		/**
 		 * -------------------------------------------------------------------
 		 * Namespaces
@@ -55,6 +56,17 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 			'Config'      => APPPATH . 'Config',
 			'Mod'         => ROOTPATH . 'mod',
 		];
+		/**
+		 * 自動加載模組
+		 */
+		$modules = scandir(ROOTPATH . 'mod');
+		array_shift($modules);
+		array_shift($modules);
+
+		foreach($modules as $module) {
+			$psr4["Mod\{$module}"] = ROOTPATH . "mod/{$module}";
+		}
+		
 
 		/**
 		 * -------------------------------------------------------------------
@@ -84,6 +96,13 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		unset($psr4, $classmap);
 	}
 
+	public function getModuleNamespace()
+	{
+		
+		
+
+		var_dump($map);
+	}
 	//--------------------------------------------------------------------
 
 }
