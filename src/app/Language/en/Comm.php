@@ -19,4 +19,6 @@ return [
     'create_success' => 'Create successfully',
     'update_success' => 'Update successfully',
     'delete_success' => 'Delete successfully',
+    'repeat' => '【{0, string}】is repeated',
+    'required' => '【{0, string}】is required',
 ];

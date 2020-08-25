@@ -19,4 +19,6 @@ return [
     'create_success' => '新增成功',
     'update_success' => '更新成功',
     'delete_success' => '刪除成功',
+    'repeat' => '【{0, string}】重複',
+    'required' => '【{0, string}】為必填',
 ];
