@@ -12,6 +12,8 @@ class Module extends Model
         'module_code',
         'module_name',
         'version',
+        'cover_img',
+        'description',
         'created_user',
         'updated_user'
     ];
