@@ -102,6 +102,6 @@ class AddMenu extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('menu');
+		$this->forge->dropTable('menus');
 	}
 }

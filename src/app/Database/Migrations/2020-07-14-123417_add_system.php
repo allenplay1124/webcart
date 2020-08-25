@@ -63,6 +63,6 @@ class AddSystem extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('system');
+		$this->forge->dropTable('systems');
 	}
 }

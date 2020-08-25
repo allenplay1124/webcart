@@ -35,6 +35,20 @@ class AddModule extends Migration
 				'default' => 0,
 				'comment' => '版本號'
 			],
+			'cover_img' => [
+				'type' => 'varchar',
+				'constraint' => 255,
+				'null' => false,
+				'default' => '',
+				'comment' => '模組圖片'
+			],
+			'description' => [
+				'type' => 'varchar',
+				'constraint' => 255,
+				'null' => false,
+				'default' => '',
+				'comment' => '模組說明'
+			],
 			'created_at datetime default current_timestamp COMMENT "新增時間"',
 			'updated_at datetime default current_timestamp COMMENT "更新時間"',
 			'created_user' => [
@@ -63,6 +77,6 @@ class AddModule extends Migration
 
 	public function down()
 	{
-		$this->forge->dropTable('module');
+		$this->forge->dropTable('modules');
 	}
 }
