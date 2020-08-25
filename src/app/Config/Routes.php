@@ -63,7 +63,7 @@ $routes->group('migration', function ($routes) {
     $routes->get('login', 'Migration::login');
 });
 
-
+$routes->get('/admin', 'Dashboard::index');
 
 /**
  * --------------------------------------------------------------------
