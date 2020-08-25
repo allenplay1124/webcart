@@ -68,6 +68,7 @@
                         <thead>
                             <th><?= lang('BaseSetting.lang_code') ?></th>
                             <th><?= lang('BaseSetting.lang_name') ?></th>
+                            <th>預設語言</th>
                             <th><?= lang('Comm.action') ?></th>
                         </thead>
                         <tbody>
@@ -77,6 +78,12 @@
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" v-model="item.lang_name">
+                                </td>
+                                <td>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" :id="item.lang_code" v-model="item.is_default" @change="setDefaultLang(index)">
+                                        <label class="custom-control-label" :for="item.lang_code"></label>
+                                    </div>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger" @click="delLang(index)">
@@ -132,7 +139,7 @@
         watch: {
             form: function(value) {
                 this.checkSiteName()
-            }
+            },
         },
         methods: {
             addLang() {
@@ -141,6 +148,7 @@
                         Swal.fire({
                             icon: 'error',
                             title: '<?= lang('Comm.noties') ?>',
+                            text: '<?= lang('Comm.repeat', [lang('BaseSetting.lang_code')]) ?>'
                         })
                         return false
                     }
@@ -154,6 +162,9 @@
             },
             delLang(index) {
                 this.form.lang.splice(index, 1)
+            },
+            setDefaultLang(index) {
+
             },
             checkSiteName() {
                 this.errors.site_name = []
@@ -181,7 +192,7 @@
             onSubmit() {
                 if (this.validatior()) {
                     $.ajax({
-                        url: '<?= site_url('admin/system/setting') ?>',
+                        url: '<?= site_url('admin/system/setting/update') ?>',
                         type: 'put',
                         dataType: 'json',
                         data: JSON.stringify(this.form),

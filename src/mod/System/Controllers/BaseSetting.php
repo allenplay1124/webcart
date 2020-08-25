@@ -5,7 +5,7 @@ namespace Mod\System\Controllers;
 use App\Controllers\BaseController;
 use Mod\System\Models\System;
 
-class SystemSetting extends BaseController
+class BaseSetting extends BaseController
 {
     protected $request;
 
@@ -14,7 +14,7 @@ class SystemSetting extends BaseController
         $this->request = \Config\Services::request();
     }
 
-    public function baseSetting()
+    public function index()
     {
         $data = [];
         $data['page_title'] = lang('BaseSetting.page_title');
@@ -43,7 +43,7 @@ class SystemSetting extends BaseController
         return view('\Mod\System\Views\baseSetting', $data);
     }
 
-    public function setting()
+    public function update()
     {
         $data = $this->request->getJSON(true);
 
