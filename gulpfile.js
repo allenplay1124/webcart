@@ -16,9 +16,6 @@ var opt = {
 
 var options = parseArgs(process.argv.slice(2), opt);
 
-
-console.log(options.env)
-
 function clean(cb) {
   // body omitted
   cb();
@@ -57,12 +54,22 @@ function baseCSS(cb) {
   cb();
 }
 
-function copyFile(cb) {
+function copyWebFront(cb) {
   return src(["node_modules/@fortawesome/fontawesome-free/webfonts/*"])
     .pipe(dest("wwwroot/assets/webfonts"));
   cb();
 }
 
+function copyModuleImg(cb) {
+  return src([
+    "src/mod/*/Resoure/images/*"
+  ]).pipe(rename(function (path) {
+    var dirname = path.dirname.split('/')
+    path.dirname = dirname[0] + '/'
+  })).pipe(dest('wwwroot/assets/images/'));
+
+  cb()
+}
 
 
 function modScss(cb) {
@@ -93,13 +100,14 @@ function modJs(cb) {
 function develop(cb) {
   gulp.watch('src/mod/*/Resoure/scss/*.scss', gulp.parallel(modScss))
   gulp.watch('src/mod/*/Resoure/js/*.js', gulp.parallel(modJs))
+  gulp.watch('src/mod/*/Resoure/images/*', gulp.parallel(copyModuleImg))
   cb()
 }
 
 if (options.env == 'prod') {
   exports.build = build;
-  exports.default = series(baseJs, baseCSS, copyFile, modScss, modJs);
+  exports.default = series(baseJs, baseCSS, copyWebFront, modScss, modJs, copyModuleImg);
 } else {
   exports.build = build;
-  exports.default = series(baseJs, baseCSS, copyFile, develop)
+  exports.default = series(baseJs, baseCSS, copyWebFront, develop, copyModuleImg)
 }
